@@ -1,12 +1,16 @@
-#Importing library and thir function
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 from sys import argv
+import os
+
+#creating directory for split songs  
+if not os.path.exists("./songs"):
+   os.makedirs("./songs")
 
 #reading from audio mp3 file
 filename = argv[1]
 song = AudioSegment.from_mp3(filename)
-save_path = './split_songs/'
+save_path = './songs/'
 
 # spliting audio files
 audio_chunks = split_on_silence(song, min_silence_len=500, silence_thresh=-40 )
